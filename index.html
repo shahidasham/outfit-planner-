@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>Outfit Planner System</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+
+/* ================= GLOBAL RESET ================= */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins, sans-serif;
+}
+
+/* ================= BODY (APP STYLE CENTER) ================= */
+body{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+overflow:hidden;
+background:#000;
+}
+
+/* ================= BACKGROUND ================= */
+.bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-3;
+background: linear-gradient(-45deg, #0a0a0a, #141414, #0f0f0f, #1c1c1c);
+background-size: 400% 400%;
+animation: gradientFlow 12s ease infinite;
+}
+
+@keyframes gradientFlow{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ================= WAVES ================= */
+.wave{
+position:absolute;
+width:250%;
+height:250%;
+top:-60%;
+left:-60%;
+background: radial-gradient(circle, rgba(108,99,255,0.25), transparent 60%);
+animation: spin 18s linear infinite;
+mix-blend-mode: screen;
+}
+
+.wave2{background: radial-gradient(circle, rgba(0,212,255,0.2), transparent 60%); animation-duration:22s;}
+.wave3{background: radial-gradient(circle, rgba(255,107,107,0.2), transparent 60%); animation-duration:28s;}
+
+@keyframes spin{
+0%{transform:rotate(0deg) scale(1);}
+100%{transform:rotate(360deg) scale(1.2);}
+}
+
+/* ================= PARTICLES ================= */
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation: floatUp 10s linear infinite;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(100vh) scale(0.5); opacity:0;}
+50%{opacity:0.8;}
+100%{transform:translateY(-10vh) scale(1); opacity:0;}
+}
+
+/* ================= LOGIN CARD (MOBILE APP STYLE) ================= */
+.login-box{
+width:100%;
+max-width:380px;
+padding:28px 22px;
+background:rgba(15,15,15,0.78);
+border-radius:22px;
+color:#ddd;
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter: blur(18px);
+box-shadow:0 10px 50px rgba(0,0,0,0.7);
+text-align:center;
+z-index:2;
+}
+
+/* TITLE */
+.login-box h2{
+color:#fff;
+font-size:22px;
+margin-bottom:18px;
+letter-spacing:1px;
+}
+
+/* INPUTS */
+input{
+width:100%;
+margin-top:12px;
+padding:12px 14px;
+border-radius:10px;
+border:1px solid #333;
+outline:none;
+background:#1c1c1c;
+color:white;
+font-size:14px;
+}
+
+/* BUTTON (APP STYLE) */
+button{
+width:100%;
+margin-top:16px;
+padding:12px;
+border-radius:10px;
+border:none;
+background:#6c63ff;
+color:white;
+font-weight:600;
+font-size:15px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:active{
+transform:scale(0.97);
+}
+
+button:hover{
+background:#00d4ff;
+}
+
+/* ERROR TEXT */
+#error{
+color:#ff6b6b;
+margin-top:12px;
+font-size:13px;
+min-height:18px;
+}
+
+/* ================= MOBILE TWEAKS ================= */
+@media (max-width:480px){
+
+.login-box{
+padding:22px 18px;
+border-radius:18px;
+}
+
+.login-box h2{
+font-size:20px;
+}
+
+input,button{
+font-size:14px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg">
+<div class="wave"></div>
+<div class="wave wave2"></div>
+<div class="wave wave3"></div>
+
+<div class="particle" style="left:10%; animation-delay:0s;"></div>
+<div class="particle" style="left:25%; animation-delay:2s;"></div>
+<div class="particle" style="left:40%; animation-delay:4s;"></div>
+<div class="particle" style="left:60%; animation-delay:1s;"></div>
+<div class="particle" style="left:80%; animation-delay:3s;"></div>
+</div>
+
+<!-- LOGIN CARD -->
+<div class="login-box">
+
+<h2>👗 OUTFIT PLANNER</h2>
+
+<input type="text" id="username" placeholder="Username">
+<input type="password" id="password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<div id="error"></div>
+
+</div>
+
+<script>
+
+function login(){
+let u=document.getElementById("username").value;
+let p=document.getElementById("password").value;
+
+if(u==="admin" && p==="12345"){
+window.location="dashboard.html";
+}else{
+document.getElementById("error").innerText="Wrong username or password";
+}
+}
+
+</script>
+
+</body>
+</html>
